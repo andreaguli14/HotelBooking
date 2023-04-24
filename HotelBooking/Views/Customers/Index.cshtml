@@ -1,6 +1,49 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Customer>
 @{
+    ViewData["Title"] = "Customer";
 }
+
+
+<div class="container-fluid">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <button onclick="location.href='@Url.Action("AddCustomer")'" class="btn btn-success">Add Customer</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">CF</th>
+                <th scope="col">Name</th>
+                <th scope="col">Surname</th>
+                <th scope="col">City</th>
+                <th scope="col">Province</th>
+                <th scope="col">Mail</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Room </th>
+                <th scope="col">Booking Code</th>
+                <th scope="col"></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var customer in Model)
+            {
+                <tr>
+                    <th scope="row">@customer.Id</th>
+                    <td>@customer.CF</td>
+                    <td>@customer.Name</td>
+                    <td>@customer.Surname</td>
+                    <td>@customer.City</td>
+                    <td>@customer.Province</td>
+                    <td>@customer.Mail</td>
+                    <td>@customer.Phone</td>
+                    <td>@customer.Room_Id</td>
+                    <td>@customer.Booking_Id</td>
+                    <td><a asp-action="EditCustomer" asp-route-id="@customer.Id">Edit</a> <a asp-action="DeleteCustomer" asp-route-id="@customer.Id">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
 

@@ -1,0 +1,84 @@
+﻿@model BookingPage
+@{
+
+    ViewData["Title"] = "Add Booking";
+}
+
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<form class="row g-3" method="post">
+    <div class="col-md-4">
+        <label class="form-label">Customer</label>
+        <select asp-for="@Model.booking.Customer_Id" class="form-control" id="Customer_Id">
+            @foreach (var customer in Model.customer)
+            {
+                <option value="@customer.Id">@customer.Name @customer.Surname </option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Room</label>
+        <select asp-for="@Model.booking.Room_Id" class="form-control" id="Room_Id">
+            @foreach (var room in Model.room)
+            {
+                <option disabled="@room.Busy" value="@room.Id">@room.Number</option>
+            }
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Type</label>
+        <select asp-for="@Model.booking.Type" class="form-control">
+            <option value="Mezza Pensione">Mezza Pensione</option>
+            <option value="Pensione Completa">Pensione Completa</option>
+            <option value="Pernottamento con colazione">Pernottamento con colazione</option>
+        </select>
+    </div>
+    <div class="col-6">
+        <label for="single">Date From</label><br>
+        <input asp-for="@Model.booking.Date_From" type="date" class="form-control" />
+    </div>
+    <div class="col-6">
+        <label for="single">Date To</label><br>
+        <input asp-for="@Model.booking.Date_To" type="date" class="form-control" />
+    </div>
+    <div class="col-6">
+        <label for="single">Deposit</label><br>
+        <input asp-for="@Model.booking.Deposit" type="number" class="form-control" />
+    </div>
+    <div class="col-6">
+        <label for="single">Price</label><br>
+        <input asp-for="@Model.booking.Price" type="number" class="form-control" />
+    </div>
+
+    <div class="col-3">
+        <label for="single">In RoomBreak Fast</label><br>
+        <input asp-for="@Model.extraService.InRoomBreakFast" type="checkbox" /><br>
+        <input asp-for="@Model.extraService.InRoomBreakFast_Price" type="number" class="form-control" />
+    </div>
+    <div class="col-3">
+        <label for="single">Minibar</label><br>
+        <input asp-for="@Model.extraService.Minibar" type="checkbox" /><br>
+        <input asp-for="@Model.extraService.Minibar_Price" type="number" class="form-control" />
+    </div>
+    <div class="col-3">
+        <label for="single">Extra Bed</label><br>
+        <input asp-for="@Model.extraService.ExtraBed" type="checkbox" /><br>
+        <input asp-for="@Model.extraService.ExtraBed_Price" type="number" class="form-control" />
+    </div>
+    <div class="col-3">
+        <label for="single">Crib</label><br>
+        <input asp-for="@Model.extraService.Crib" type="checkbox" /><br>
+        <input asp-for="@Model.extraService.Crib_Price" type="number" class="form-control" />
+    </div>
+    <div class="col-3">
+        <label for="single">Internet</label><br>
+        <input asp-for="@Model.extraService.Internet" type="checkbox" /><br>
+        <input asp-for="@Model.extraService.Internet_Price" type="number" class="form-control" />
+    </div>
+
+
+    <div class="col-12 d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary btn-lg px-5 mt-3">Create</button>
+    </div>
+
+</form>

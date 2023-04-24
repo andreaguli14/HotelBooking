@@ -1,6 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model List<Room>
 @{
+    ViewData["Title"] = "Rooms";
 }
+
+
+<div class="container-fluid">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <button onclick="location.href='@Url.Action("AddRoom")'" class="btn btn-success">Add Room</button>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Number</th>
+                <th scope="col">Description</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Booking</th>
+                <th scope="col">Busy</th>
+                <th scope="col">Type</th>
+                <th scope="col"></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var room in Model)
+            {
+                <tr>
+                    <th scope="row">@room.Id</th>
+                    <td>@room.Number</td>
+                    <td>@room.Description</td>
+                    <td>@room.Customer_Id</td>
+                    <td>@room.Booking_Id</td>
+                    <td>@room.Busy</td>
+                    <td>@room.Type</td>
+                    <td><a asp-action="EditRoom" asp-route-id="@room.Id">Edit</a> <a asp-action="DeleteRoom" asp-route-id="@room.Id">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
 

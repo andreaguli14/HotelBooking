@@ -1,0 +1,42 @@
+﻿@model Customer
+@{
+
+    ViewData["Title"] = $"Edit Customer {Model.Id}";
+}
+
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<form class="row g-3" method="post" asp-route-id="@Model.Id">
+    <div class="col-md-4">
+        <label class="form-label">Fiscal Code</label>
+        <input asp-for="@Model.CF" type="text" class="form-control" id="CF" />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Name</label>
+        <input asp-for="@Model.Name" type="text" class="form-control" id="Name">
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Surname</label>
+        <input asp-for="@Model.Surname" type="text" class="form-control" id="Surname">
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">City</label>
+        <input asp-for="@Model.City" type="text" class="form-control" id="City">
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Province</label>
+        <input asp-for="@Model.Province" type="text" class="form-control" id="Province">
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Mail</label>
+        <input asp-for="@Model.Mail" type="text" class="form-control" id="Mail">
+    </div>
+    <div class="col-md-6">
+        <label class="form-label">Phone</label>
+        <input asp-for="@Model.Phone" type="number" class="form-control" id="Phone">
+    </div>
+
+    <div class="col-12 d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary btn-lg px-5 mt-3">Edit</button>
+    </div>
+</form>

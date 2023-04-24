@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HotelBooking.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230421093159_migration0")]
-    partial class migration0
+    [Migration("20230421150621_migration1")]
+    partial class migration1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,189 @@ namespace HotelBooking.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("HotelBooking.Models.Booking", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Customer_Id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Date_From")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Date_To")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double>("Deposit")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("ExtraService_Id")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("Room_Id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("HotelBooking.Models.Customer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("Booking_Id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("CF")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Mail")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<double?>("Phone")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Province")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Room_Id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Surname")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Customers");
+                });
+
+            modelBuilder.Entity("HotelBooking.Models.ExtraService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Booking_Id")
+                        .HasColumnType("integer");
+
+                    b.Property<bool>("Crib")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Crib_Date")
+                        .HasColumnType("text");
+
+                    b.Property<double?>("Crib_Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<bool>("ExtraBed")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("ExtraBed_Date")
+                        .HasColumnType("text");
+
+                    b.Property<double?>("ExtraBed_Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<bool>("InRoomBreakFast")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("InRoomBreakFast_Date")
+                        .HasColumnType("text");
+
+                    b.Property<double?>("InRoomBreakFast_Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<bool>("Internet")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Internet_Date")
+                        .HasColumnType("text");
+
+                    b.Property<double?>("Internet_Price")
+                        .HasColumnType("double precision");
+
+                    b.Property<bool>("Minibar")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Minibar_Date")
+                        .HasColumnType("text");
+
+                    b.Property<double?>("Minibar_Price")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ExtraServices");
+                });
+
+            modelBuilder.Entity("HotelBooking.Models.Room", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("Booking_Id")
+                        .HasColumnType("integer");
+
+                    b.Property<bool?>("Busy")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("Customer_Id")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Number")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rooms");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {

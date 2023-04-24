@@ -1,0 +1,96 @@
+﻿@model PrintPage
+@{
+    Layout = "";
+    var extraTotal = Model.extraService.Crib_Price + Model.extraService.ExtraBed_Price + Model.extraService.InRoomBreakFast_Price + Model.extraService.Internet_Price + Model.extraService.Minibar_Price;
+    var total = Model.booking.Price - Model.booking.Deposit + extraTotal;
+}
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AgenziaSpedizioni.styles.css" asp-append-version="true" />
+</head>
+<body>
+
+    <h1 class="text-center">Receipt Of Customer @Model.customer.Name @Model.customer.Surname</h1>
+
+    <ul>
+        <li>
+            Name: @Model.customer.Name;
+        </li>
+        <li>
+            Surname: @Model.customer.Surname;
+        </li>
+        <li>
+            Room: @Model.room.Number;
+        </li>
+        <li>
+            Type: @Model.booking.Type;
+        </li>
+        <li>
+            From: @Model.booking.Date_From;
+        </li>
+        <li>
+            To: @Model.booking.Date_To;
+        </li>
+    </ul>
+    <hr />
+    @if (Model.extraService.Crib || Model.extraService.ExtraBed || Model.extraService.InRoomBreakFast || Model.extraService.Internet || Model.extraService.Minibar)
+    {
+
+
+        <h2>Servizi Richiesti</h2><ul>
+            @if (Model.extraService.Crib)
+            {
+                <li>
+                    Crib (@Model.extraService.Crib_Price €)
+                </li>
+            }
+            @if (Model.extraService.Minibar)
+            {
+                <li>
+                    Minibar (@Model.extraService.Minibar_Price €)
+                </li>
+            } @if (Model.extraService.Internet)
+            {
+                <li>
+                    Internet (@Model.extraService.Internet_Price €)
+                </li>
+            } @if (Model.extraService.ExtraBed)
+            {
+                <li>
+                    ExtraBed (@Model.extraService.ExtraBed_Price €)
+                </li>
+            } @if (Model.extraService.InRoomBreakFast)
+            {
+                <li>
+                    In RoomBreak Fast (@Model.extraService.InRoomBreakFast_Price €)
+                </li>
+            }
+        </ul>
+        <hr />
+    }
+    <h3>Price: @Model.booking.Price</h3>
+    <h3>Deposit: @Model.booking.Deposit</h3>
+    @if (Model.extraService.Crib || Model.extraService.ExtraBed || Model.extraService.InRoomBreakFast || Model.extraService.Internet || Model.extraService.Minibar)
+    {
+
+        <h3>Extra Service: @extraTotal</h3>
+    }
+        <hr />
+    <h3>Total: @total  </h3>
+
+
+</body>
+
+
+
+
+
+<script>
+    print()
+    window.location.replace("@Url.Action("Index")");
+</script>
+

@@ -1,27 +1,40 @@
 ﻿<Properties StartupConfiguration="{D18D300A-788B-48EC-95A7-EDFD0A4847E9}|https">
-  <MonoDevelop.Ide.Workbench ActiveDocument="HotelBooking/Properties/launchSettings.json">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workbench ActiveDocument="HotelBooking/Views/Bookings/AddBooking.cshtml">
     <Files>
-      <File FileName="HotelBooking/Views/Shared/_Layout.cshtml" Line="10" Column="16" />
-      <File FileName="HotelBooking/appsettings.json" Line="8" Column="32" />
-      <File FileName="HotelBooking/Properties/launchSettings.json" Line="23" Column="48" />
+      <File FileName="HotelBooking/Views/Bookings/PrintPage.cshtml" Line="30" Column="16" />
+      <File FileName="HotelBooking/Views/Bookings/Index.cshtml" />
+      <File FileName="HotelBooking/Controllers/BookingsController.cs" />
+      <File FileName="HotelBooking/Models/PrintPageModel.cs" />
+      <File FileName="HotelBooking/Models/ExtraService.cs" />
+      <File FileName="HotelBooking/Views/Bookings/AddBooking.cshtml" Line="22" Column="36" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="HotelBooking" expanded="True">
             <Node name="HotelBooking" expanded="True">
-              <Node name="Views" expanded="True" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Data" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Bookings" expanded="True">
+                  <Node name="AddBooking.cshtml" selected="True" />
+                </Node>
+                <Node name="Customers" expanded="True" />
+                <Node name="Rooms" expanded="True" />
+                <Node name="Shared" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.ItemProperties.HotelBooking PreferredExecutionTarget="/System/Volumes/Preboot/Cryptexes/App/System/Applications/Safari.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
 </Properties>

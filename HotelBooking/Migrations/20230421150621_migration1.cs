@@ -7,7 +7,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace HotelBooking.Migrations
 {
     /// <inheritdoc />
-    public partial class migration0 : Migration
+    public partial class migration1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -49,6 +49,94 @@ namespace HotelBooking.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bookings",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Customer_Id = table.Column<int>(type: "integer", nullable: false),
+                    Room_Id = table.Column<int>(type: "integer", nullable: false),
+                    Date = table.Column<string>(type: "text", nullable: false),
+                    Date_From = table.Column<string>(type: "text", nullable: false),
+                    Date_To = table.Column<string>(type: "text", nullable: false),
+                    Deposit = table.Column<double>(type: "double precision", nullable: false),
+                    Price = table.Column<double>(type: "double precision", nullable: false),
+                    Type = table.Column<string>(type: "text", nullable: false),
+                    ExtraService_Id = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bookings", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Customers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CF = table.Column<string>(type: "text", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Surname = table.Column<string>(type: "text", nullable: false),
+                    City = table.Column<string>(type: "text", nullable: false),
+                    Province = table.Column<string>(type: "text", nullable: true),
+                    Mail = table.Column<string>(type: "text", nullable: false),
+                    Phone = table.Column<double>(type: "double precision", nullable: true),
+                    Room_Id = table.Column<int>(type: "integer", nullable: true),
+                    Booking_Id = table.Column<int>(type: "integer", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Customers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ExtraServices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Booking_Id = table.Column<int>(type: "integer", nullable: false),
+                    InRoomBreakFast = table.Column<bool>(type: "boolean", nullable: false),
+                    InRoomBreakFast_Date = table.Column<string>(type: "text", nullable: true),
+                    InRoomBreakFast_Price = table.Column<double>(type: "double precision", nullable: true),
+                    Minibar = table.Column<bool>(type: "boolean", nullable: false),
+                    Minibar_Date = table.Column<string>(type: "text", nullable: true),
+                    Minibar_Price = table.Column<double>(type: "double precision", nullable: true),
+                    Internet = table.Column<bool>(type: "boolean", nullable: false),
+                    Internet_Date = table.Column<string>(type: "text", nullable: true),
+                    Internet_Price = table.Column<double>(type: "double precision", nullable: true),
+                    ExtraBed = table.Column<bool>(type: "boolean", nullable: false),
+                    ExtraBed_Date = table.Column<string>(type: "text", nullable: true),
+                    ExtraBed_Price = table.Column<double>(type: "double precision", nullable: true),
+                    Crib = table.Column<bool>(type: "boolean", nullable: false),
+                    Crib_Date = table.Column<string>(type: "text", nullable: true),
+                    Crib_Price = table.Column<double>(type: "double precision", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ExtraServices", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Rooms",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Number = table.Column<int>(type: "integer", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    Customer_Id = table.Column<int>(type: "integer", nullable: true),
+                    Booking_Id = table.Column<int>(type: "integer", nullable: true),
+                    Busy = table.Column<bool>(type: "boolean", nullable: true),
+                    Type = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Rooms", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -212,6 +300,18 @@ namespace HotelBooking.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Bookings");
+
+            migrationBuilder.DropTable(
+                name: "Customers");
+
+            migrationBuilder.DropTable(
+                name: "ExtraServices");
+
+            migrationBuilder.DropTable(
+                name: "Rooms");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

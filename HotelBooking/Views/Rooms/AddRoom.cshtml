@@ -1,0 +1,28 @@
+﻿@model Room
+@{
+
+    ViewData["Title"] = "Add Room";
+}
+
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<form class="row g-3" method="post">
+    <div class="col-md-4">
+        <label class="form-label">Room Number</label>
+        <input asp-for="@Model.Number" type="number" class="form-control" id="Number" />
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Description</label>
+        <input asp-for="@Model.Description" type="text" class="form-control" id="Description">
+    </div>
+    <div class="col-4">
+        <input asp-for="@Model.Type" type="radio" id="single" name="type" value="Single">
+        <label for="single">Single</label><br>
+        <input asp-for="@Model.Type" type="radio" id="double" name="type" value="Double">
+        <label for="double">Double</label><br>
+    </div>
+
+    <div class="col-12 d-flex justify-content-center">
+        <button type="submit" class="btn btn-primary btn-lg px-5 mt-3">Create</button>
+    </div>
+</form>

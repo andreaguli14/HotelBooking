@@ -40,4 +40,7 @@
     <Folder Include="Views\Bookings\" />
     <Folder Include="Models\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Bookings\Koala.cshtml" />
+  </ItemGroup>
 </Project>
