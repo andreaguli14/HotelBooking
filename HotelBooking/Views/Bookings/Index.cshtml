@@ -1,68 +1,71 @@
-﻿@model List<Booking>
+﻿@using Microsoft.AspNetCore.Identity
+@model List<Booking>
+@inject UserManager<IdentityUser> usermanager
+
 @{
     ViewData["Title"] = "Booking";
     string @CF = "";
     string @type = "";
+
 }
 
 
-    <div class="container-fluid">
-        <h1 class="text-center">@ViewData["Title"]</h1>
-        <div class="offset-md-9">
-            <form>
-                <select asp-for="@type" onchange="this.form.submit()" class="form-select">
-                    <option value="All" selected>Select by type</option>
-                    <option value="Mezza Pensione">Mezza Pensione</option>
-                    <option value="Pensione Completa">Pensione Completa</option>
-                    <option value="Pernottamento con colazione">Pernottamento con colazione</option>
-                </select>
-            </form>
-        </div><br />
-        <div class="d-flex justify-content-between">
-            <button onclick="location.href='@Url.Action("AddBooking")'" class="btn btn-success">Add Booking</button>
-            <form>
-                <input asp-for="@CF" class="form-control" style="display:inline;width:70%" type="text" />
-                <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Customer</th>
-                    <th scope="col">Room </th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Date From</th>
-                    <th scope="col">Date To</th>
-                    <th scope="col">Deposit</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Type </th>
-                    <th scope="col"></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var booking in Model)
-                {
-                    <tr>
-                        <th scope="row">@booking.Id</th>
-                        <td>@booking.Customer_Id</td>
-                        <td>@booking.Room_Id</td>
-                        <td>@booking.Date</td>
-                        <td>@booking.Date_From</td>
-                        <td>@booking.Date_To</td>
-                        <td>@booking.Deposit</td>
-                        <td>@booking.Price</td>
-                        <td>@booking.Type</td>
-                        <td><button onclick="location.href='@Url.Action("Checkout", new { id= booking.Id })'" class="btn btn-primary" disabled="@booking.Checkout">Checkout</button></td>
-                        <td><a asp-action="EditBooking"  asp-route-id="@booking.Id">Edit</a> <a asp-action="DeleteBooking" asp-route-id="@booking.Id">Delete</a></td>
-
-                    </tr>
-                }
-            </tbody>
-        </table>
+<div class="container-fluid">
+    <h1 class="text-center">@ViewData["Title"]</h1>
+    <div class="offset-md-9">
+        <form>
+            <select asp-for="@type" onchange="this.form.submit()" class="form-select">
+                <option value="All" selected>Select by type</option>
+                <option value="Mezza Pensione">Mezza Pensione</option>
+                <option value="Pensione Completa">Pensione Completa</option>
+                <option value="Pernottamento con colazione">Pernottamento con colazione</option>
+            </select>
+        </form>
+    </div><br />
+    <div class="d-flex justify-content-between">
+        <button onclick="location.href='@Url.Action("AddBooking")'" class="btn btn-success">Add Booking</button>
+        <form>
+            <input asp-for="@CF" class="form-control" style="display:inline;width:70%" type="text" />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
     </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Room </th>
+                <th scope="col">Date</th>
+                <th scope="col">Date From</th>
+                <th scope="col">Date To</th>
+                <th scope="col">Deposit</th>
+                <th scope="col">Price</th>
+                <th scope="col">Type </th>
+                <th scope="col"></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model)
+            {
+                <tr>
+                    <th scope="row">@booking.Id</th>
+                    <td>@booking.Customer_Id</td>
+                    <td>@booking.Room_Id</td>
+                    <td>@booking.Date</td>
+                    <td>@booking.Date_From</td>
+                    <td>@booking.Date_To</td>
+                    <td>@booking.Deposit</td>
+                    <td>@booking.Price</td>
+                    <td>@booking.Type</td>
+                    <td><button onclick="location.href='@Url.Action("Checkout", new { id= booking.Id})'" class="btn btn-primary" disabled="@booking.Checkout">Checkout</button></td>
+                    <td><a asp-action="EditBooking" asp-route-id="@booking.Id">Edit</a> <a asp-action="DeleteBooking" asp-route-id="@booking.Id">Delete</a></td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
 
 
- 
